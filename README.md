@@ -7,7 +7,19 @@ import Clipimage from './ClipImage.vue';
 ```
 例：
 ```
-<clipimage :CanW="600" :CanH="700" @saveImg="savebase" />
+<clipimage @saveImg="savebase" />
+```
+```
+export default {
+  components: {
+    Clipimage,
+  },
+  methods: {
+    savebase(e) {
+      console.log(e);
+    },
+  },
+};
 ```
 ### 配合 loadsh库 一起使用
 ```
@@ -17,9 +29,13 @@ npm i --save lodash
 loadsh->(throttle函数)用于mousemove函数的节流。
 
 ### 可传入的参数
-CanW：画布宽  
-CanH：画布高   
-MarkW：遮罩层宽   
-MarkH：遮罩层高   
-isShow：是否开启预览画布（默认true）  
-@saveImg: 自定义事件 可获取截取图片的base64码  
+CanW：canvas宽（默认420）   
+CanH: canvas高（默认420）    
+MarkW：遮罩层宽（默认220）   
+MarkH：遮罩层高（默认220）     
+@saveImg: 自定义事件 参数为截取图片base64码    
+imgtype: 截取图片类型（默认png）     
+isShow：是否开启预览的小画布（默认true）
+```
+<clipimage :CanW="600" :MarkW="300" :isShow="false" :imgtype="jpg" @saveImg="savebase" />
+```
