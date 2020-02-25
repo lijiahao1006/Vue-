@@ -1,7 +1,7 @@
 # Vue-公共组件库
-图片裁切
+*图片裁切*
 ## 基于canvas实现图片裁切功能
-在组件中引入
+组件中引入
 ```
 import Clipimage from './ClipImage.vue';
 ```
