@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="wrap">
-      <!-- 该盒子用于 画布、mark盒子 事件冒泡 -->
+      <!-- 该盒子用于 画布 mark盒子 事件冒泡 -->
       <div
         @mousedown="downHan"
         @mouseup="upHan"
@@ -25,7 +25,7 @@
         ></div>
         <!-- 预览截取后的画布 -->
         <canvas
-          v-if="isShow"
+          v-show="isShow"
           class="canvas2"
           width="220px"
           height="220px"
@@ -206,10 +206,10 @@ export default {
       // 保证图片存在
       if (!this.IMG) return;
       // 获取mark阴影下的图片
-      const imageData = this.ctx.getImageData(100, 100, 220, 220);
+      const imageData = this.ctx.getImageData(this.markLeft, this.markTop, this.MarkW, this.MarkH);
       this.ctx2 = this.$refs.canvas2.getContext('2d');
       // 把像素码放到画布中
-      this.ctx2.putImageData(imageData, 0, 0, 0, 0, 220, 220);
+      this.ctx2.putImageData(imageData, 0, 0, 0, 0, this.MarkW, this.MarkH);
       // 把画布变成一张图片
       this.$refs.canvas2.toDataURL('png');
       // base64 传递给父组件
